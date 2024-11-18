@@ -25,7 +25,7 @@ Sign and decode deserialized jws
 
 - It is necessary to add environment variable ***'PRIVATE_KEY_JWS'*** to sign the json request
 
-- The body should look like:
+- The manage environments should look like:
     <div align="center">
         <img src="assets/private_key.png" alt="Body"/>
     </div>
