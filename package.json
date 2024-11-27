@@ -3,7 +3,6 @@
   "version": "0.0.1",
   "description": "Sign and decode deserialized jws",
   "author": "alvaro.mamani.qp@gmail.com",
-  "private": true,
   "keywords": ["insomnia", "plugin", "base64", "jws"],
   "insomnia": {
     "name": "jws-sign-decode",

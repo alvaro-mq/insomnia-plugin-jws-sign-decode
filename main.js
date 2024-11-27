@@ -5,9 +5,11 @@ const jose = require('node-jose');
 const firmar = async (context, body) => {
    try {
       const privateKey = context.request.getEnvironmentVariable('PRIVATE_KEY_JWS');
+      const kid = context.request.getEnvironmentVariable('KID_JWS');
       if (!privateKey) {
-        console.log('----------------------------------------------------------------')
-        console.log('ES NECESARIO CONFIGURAR LA VARIABLE DE ENTORNO (PRIVATE_KEY_JWS)')
+        console.log('----------------------------------------------------------------');
+        console.log('ES NECESARIO CONFIGURAR LA VARIABLE DE ENTORNO (PRIVATE_KEY_JWS)');
+        console.log('----------------------------------------------------------------');
         return;
       }
       const keyStore = jose.JWK.createKeyStore();
@@ -15,10 +17,18 @@ const firmar = async (context, body) => {
       console.log('Clave cargada correctamente:', key.toJSON(true));
       
       const payloadString = JSON.stringify(body);
+      
+      const properties = {
+        format: 'flattened'
+      }
+      if (kid) {
+        properties.fields = {
+          kid
+        };
+      }
+
       const signer = jose.JWS.createSign(
-        {
-          format: 'flattened',
-        },
+        properties,
         key
       );
       const jws = await signer.update(payloadString, 'utf8').final();
@@ -30,9 +40,9 @@ const firmar = async (context, body) => {
    }
 }
 module.exports = {
-  name: 'jws-sign-decode', // Nombre del plugin
-  displayName: 'JwsSignDecode', // Nombre visible en la interfaz de Insomnia
-  description: 'Plugin para firmar un request y decodificar el response haciendo uso de jws deserializado',
+    name: 'jws-sign-decode', // Nombre del plugin
+    displayName: 'JwsSignDecode', // Nombre visible en la interfaz de Insomnia
+    description: 'Plugin para firmar un request y decodificar el response haciendo uso de jws deserializado',
 
   // Añadir una nueva transformación para respuestas
   requestHooks: [
