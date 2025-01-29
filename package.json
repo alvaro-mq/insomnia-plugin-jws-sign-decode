@@ -3,13 +3,18 @@
   "version": "0.0.1",
   "description": "Sign and decode deserialized jws",
   "author": "alvaro.mamani.qp@gmail.com",
-  "keywords": ["insomnia", "plugin", "base64", "jws"],
+  "keywords": [
+    "insomnia",
+    "plugin",
+    "base64",
+    "jws"
+  ],
   "insomnia": {
     "name": "jws-sign-decode",
     "description": "Sign and decode deserialized jws"
   },
   "main": "main.js",
-  "devDependencies": {
+  "dependencies": {
     "node-jose": "^2.2.0"
   }
 }
