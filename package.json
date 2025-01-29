@@ -1,6 +1,6 @@
 {
   "name": "insomnia-plugin-jws-sign-decode",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Sign and decode deserialized jws",
   "author": "alvaro.mamani.qp@gmail.com",
   "keywords": [
